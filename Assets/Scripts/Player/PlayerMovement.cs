@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
 {
     public int JumpCountOnGrounded = 1;
     public Rigidbody2D rb;
+    public Animator animator;
+    [SerializeField]private SpriteRenderer _renderer;
     
     private float _moveSpeed = 5f;
     private float _acceleration = 5f;
@@ -27,6 +29,21 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
         // Rigidbody'ye yeni hızı uygula
         rb.velocity = new Vector2(_currentVelocity.x, rb.velocity.y);
         
+        if (rb.velocity.x > 1f )
+        {
+            animator.SetBool("Running", true);
+            _renderer.flipX = false;
+            
+        }else if (rb.velocity.x < -1f)
+        {
+            animator.SetBool("Running", true);
+            _renderer.flipX = true;
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
+        
         // Zıplama
         if (Input.GetButtonDown("Jump"))
         {
@@ -43,7 +60,6 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
      {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("groundedddd");
             _currentJumpCount = JumpCountOnGrounded;
         }
         else
