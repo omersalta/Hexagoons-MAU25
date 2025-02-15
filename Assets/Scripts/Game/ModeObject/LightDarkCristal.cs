@@ -1,18 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using DG.Tweening;
+using Game;
 using UnityEngine;
 
-public class LightDarkCristal : MonoBehaviour
+public class LightDarkCristal : MonoBehaviour,ILightDarkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static bool isPickable = false;
+    [SerializeField] private SpriteRenderer _renderer;
+
+    private void Start()
     {
-        
+        _renderer.DOFade(0f, 0.1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnLight()
     {
-        
+        isPickable = true;
+        _renderer.DOFade(0f, 0.1f);
+    }
+    public void OnDark()
+    {
+        isPickable = false;
+        DOVirtual.DelayedCall(1.2f,()=>
+        {
+            _renderer.DOFade(1, 3f);
+        });
     }
 }

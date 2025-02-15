@@ -56,15 +56,15 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
         _moveSpeed = 5f;
         _acceleration = 4f;
         _deceleration = 5f;
-        _jumpForce = 10f;
-        JumpCountOnGrounded = 1;
+        _jumpForce = 14f;
+        JumpCountOnGrounded = 2;
     }
     public void OnDark()
     {
-        _moveSpeed = 9f;
-        _acceleration = 9f;
-        _deceleration = 12f;
+        _moveSpeed = 2f;
+        _acceleration = 4f;
+        _deceleration = 5f;
         _jumpForce = 14f;
-        JumpCountOnGrounded = 2;
+        JumpCountOnGrounded = 1;
     }
 }

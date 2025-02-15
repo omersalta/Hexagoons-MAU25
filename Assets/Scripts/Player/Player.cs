@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
         // Mod değişimi
         if (Input.GetKeyDown(KeyCode.B))
         {
+            Debug.Log("b basıldııı");
             ToggleMode();
         }
     }
