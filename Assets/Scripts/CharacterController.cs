@@ -58,6 +58,7 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && !inAir)
         {
             body.AddForce(new Vector2(jumpForce, jumpForce), ForceMode2D.Impulse);
+            inAir = true;
         }
     }
 
@@ -67,6 +68,11 @@ public class CharacterController : MonoBehaviour
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            inAir = false;
         }
     }
 }
