@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
     private float _moveSpeed = 5f;
     private float _acceleration = 5f;
     private float _deceleration = 5f;
-    private float _jumpForce = 10f;
+    private float _jumpForce = 14f;
     private int _currentJumpCount = 1;
    
     private Vector2 _currentVelocity;
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
     public void OnLight()
     {
         _moveSpeed = 5f;
-        _acceleration = 3f;
+        _acceleration = 4f;
         _deceleration = 5f;
         _jumpForce = 14f;
         JumpCountOnGrounded = 2;
@@ -85,9 +85,9 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
     
     public void OnDark()
     {
-        _moveSpeed = 1f;
-        _acceleration = 2f;
-        _deceleration = 7f;
+        _moveSpeed = 4f;
+        _acceleration = 3f;
+        _deceleration = 6f;
         _jumpForce = 14f;
         JumpCountOnGrounded = 1;
     }

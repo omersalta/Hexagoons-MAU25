@@ -10,7 +10,13 @@ public class Player : MonoBehaviour
     public float lightModeDrainRate = 5f;
     public float darkModeDrainRate = 1f;
     private bool isDarkMode = false;
+    private AudioSource effectPlayer;
     public static bool isDigging = false;
+
+    private void Start()
+    {
+        effectPlayer = gameObject.transform.Find("EffectPlayer").GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -39,5 +45,6 @@ public class Player : MonoBehaviour
     {
         isDarkMode = !isDarkMode;
         OnModeChange.Invoke(isDarkMode ? 2 : 1);
+        effectPlayer.Play();
     }
 }
