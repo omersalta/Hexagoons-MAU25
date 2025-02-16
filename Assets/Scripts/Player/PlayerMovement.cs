@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour, ILightDarkBehaviour
 
     public void OnDark()
     {
-        _moveSpeed = 4f;
+        _moveSpeed = 3f;
         _acceleration = 3f;
         _deceleration = 6f;
         _jumpForce = 14f;

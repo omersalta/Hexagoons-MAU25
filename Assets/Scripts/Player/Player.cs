@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     public UnityEvent<int> OnModeChange;
     public float batteryLife = 100f;
     public float batteryLifeMax = 100f;
-    public float lightModeDrainRate = 5f;
-    public float darkModeDrainRate = 1f;
+    public float lightModeDrainRate = 4f;
+    public float darkModeDrainRate = 0.3f;
     private bool isDarkMode = false;
     private AudioSource effectPlayer;
     public static bool isDigging = false;
