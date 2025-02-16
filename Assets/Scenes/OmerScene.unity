@@ -1321,6 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drag: 0.08
+  min: -4
   max: 42
   target: {fileID: 5230156019690328839}
 --- !u!1 &532895629
