@@ -38,7 +38,7 @@ namespace Enemy
 
         private void Update()
         {
-            if (_isChasing)
+            if (_isChasing && !_isPlayerLight)
             {
                 ChasePlayer();
             }
