@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
 {
-    public int JumpCountOnGrounded = 1;
+    private int JumpCountOnGrounded = 1;
     public Rigidbody2D rb;
     public Animator animator;
     [SerializeField]private SpriteRenderer _renderer;
@@ -19,6 +19,11 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
 
     void Update()
     {
+        if (Player.isDigging == true)
+        {
+            return;
+        }
+        
         // Kullanıcı girişlerini al
         float moveInput = Input.GetAxisRaw("Horizontal");
         Vector2 targetVelocity = new Vector2(moveInput * _moveSpeed, rb.velocity.y);
@@ -28,13 +33,14 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
         
         // Rigidbody'ye yeni hızı uygula
         rb.velocity = new Vector2(_currentVelocity.x, rb.velocity.y);
+
         
-        if (rb.velocity.x > 1f )
+        if (rb.velocity.x > 0.1f )
         {
             animator.SetBool("Running", true);
             _renderer.flipX = false;
             
-        }else if (rb.velocity.x < -1f)
+        }else if (rb.velocity.x < -0.1f)
         {
             animator.SetBool("Running", true);
             _renderer.flipX = true;
@@ -67,19 +73,21 @@ public class PlayerMovement : MonoBehaviour,ILightDarkBehaviour
             Debug.Log("collision not grounded : " + collision.gameObject.name);
         }
     }
+    
     public void OnLight()
     {
         _moveSpeed = 5f;
-        _acceleration = 4f;
+        _acceleration = 3f;
         _deceleration = 5f;
         _jumpForce = 14f;
         JumpCountOnGrounded = 2;
     }
+    
     public void OnDark()
     {
-        _moveSpeed = 2f;
-        _acceleration = 4f;
-        _deceleration = 5f;
+        _moveSpeed = 1f;
+        _acceleration = 2f;
+        _deceleration = 7f;
         _jumpForce = 14f;
         JumpCountOnGrounded = 1;
     }

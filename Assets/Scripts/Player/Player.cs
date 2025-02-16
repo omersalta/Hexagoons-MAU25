@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     public UnityEvent<int> OnModeChange;
     public float batteryLife = 100f;
+    public float batteryLifeMax = 100f;
     public float lightModeDrainRate = 5f;
     public float darkModeDrainRate = 1f;
     private bool isDarkMode = false;
+    public static bool isDigging = false;
 
     void Update()
     {
@@ -16,9 +19,19 @@ public class Player : MonoBehaviour
         batteryLife = Mathf.Max(batteryLife, 0);
 
         // Mod değişimi
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B) && isDigging == false)
         {
             ToggleMode();
+        }
+        
+        // Mod değişimi
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isDigging == false)
+        {
+            isDigging = true;
+            DOVirtual.DelayedCall(1, () =>
+            {
+                isDigging = false;
+            });
         }
     }
 

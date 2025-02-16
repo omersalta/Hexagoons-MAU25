@@ -16,14 +16,14 @@ public class LightDarkCristal : MonoBehaviour,ILightDarkBehaviour
     public void OnLight()
     {
         isPickable = true;
+        _renderer.DOKill();
         _renderer.DOFade(0f, 0.1f);
     }
     public void OnDark()
     {
         isPickable = false;
-        DOVirtual.DelayedCall(1.2f,()=>
-        {
-            _renderer.DOFade(1, 3f);
-        });
+        _renderer.DOKill();
+        _renderer.DOFade(1, 3f).SetDelay(1.2f);
+        
     }
 }
